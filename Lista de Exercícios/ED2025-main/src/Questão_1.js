@@ -41,6 +41,12 @@ class PilhaInvertida {
         this.dados = new Array(this.tamanhoMax);
     }
 
+    toString() {
+        if (this.topo === 0) return "Pilha vazia";
+    
+        return this.dados.slice(0, this.topo).join(", ");
+    }
+
     inverte(str){
         let i;
         for (i = 0; i < str.length; i++){
