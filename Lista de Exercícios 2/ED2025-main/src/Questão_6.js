@@ -1,14 +1,11 @@
 function inverterFila(fila) {
-
     if (fila.isEmpty()) {
-        return;
+        return fila;
     }
-
-    let item = fila.dequeue();
-
-    inverterFila(fila);
-
-    fila.enqueue(item);
+    const item = fila.dequeue();
+    const filaInvertida = inverterFila(fila);
+    filaInvertida.enqueue(item);
+    return filaInvertida;
 }
 
 export default inverterFila;

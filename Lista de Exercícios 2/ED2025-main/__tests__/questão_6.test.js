@@ -1,33 +1,29 @@
-import Fila from '../src/Fila';
 import inverterFila from '../src/Questão_6';
+import Fila from '../src/Fila';
 
-  let fila;
+describe('Testes da função inverterFila', () => {
+    test('Deve inverter a fila', () => {
+        const filaOriginal = new Fila(5);
+        filaOriginal.enqueue(1);
+        filaOriginal.enqueue(2);
+        filaOriginal.enqueue(3);
+        filaOriginal.enqueue(4);
+        filaOriginal.enqueue(5);
 
-  beforeEach(() => {
-    fila = new Fila();
-  });
+        const filaInvertida = inverterFila(filaOriginal);
+        
+        expect(filaInvertida.dequeue()).toBe(5);
+        expect(filaInvertida.dequeue()).toBe(4);
+        expect(filaInvertida.dequeue()).toBe(3);
+        expect(filaInvertida.dequeue()).toBe(2);
+        expect(filaInvertida.dequeue()).toBe(1);
+    });
 
-  test("Fila com elementos, deve inverter a ordem", () => {
-    fila.enqueue(1);
-    fila.enqueue(2);
-    fila.enqueue(3);
-    fila.enqueue(4);
-
-    inverterFila(fila);
-
-    expect(fila.dados).toEqual([4, 3, 2, 1]);
-  });
-
-  test("Fila vazia, deve permanecer vazia após inversão", () => {
-    inverterFila(fila);
-
-    expect(fila.dados).toEqual([]);
-  });
-
-  test("Fila com um único elemento, deve permanecer inalterada após inversão", () => {
-    fila.enqueue(10);
-
-    inverterFila(fila);
-
-    expect(fila.dados).toEqual([10]);
-  });
+    test('Deve retornar uma fila vazia ao inverter uma fila vazia', () => {
+        const filaVazia = new Fila(5);
+        
+        const filaInvertida = inverterFila(filaVazia);
+        
+        expect(filaInvertida.isEmpty()).toBe(true);
+    });
+});
